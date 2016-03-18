@@ -103,7 +103,7 @@ namespace GenericServices.Core
         internal protected virtual ISuccessOrErrors<TDto> DetailDtoFromDataIn(IGenericServicesDbContext context, 
             Expression<Func<TEntity, bool>> predicate)
         {
-            var query = GetDataUntracked(context).Where(predicate).Project().To<TDto>();
+            var query = GetDataUntracked(context).Where(predicate).ProjectTo<TDto>();
 
             //We check if we need to decompile the LINQ expression so that any computed properties in the class are filled in properly
             return ApplyDecompileIfNeeded(query).RealiseSingleWithErrorChecking();

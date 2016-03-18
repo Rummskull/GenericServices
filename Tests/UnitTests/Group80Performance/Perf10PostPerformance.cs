@@ -37,7 +37,7 @@ using Tests.Helpers;
 
 namespace Tests.UnitTests.Group80Performance
 {
-    [Ignore]
+    [Ignore("Not relevant")]
     class Perf10PostPerformance
     {
 

@@ -100,13 +100,13 @@ namespace GenericServices.Core
 
         /// <summary>
         /// This copies an existing TEntity into a new the dto using a Lambda expression to define the where clause
-        /// It copies TEntity properties into all TDto properties that have accessable setters, i.e. not private
+        /// It copies TEntity properties into all TDto properties that have accessible setters, i.e. not private
         /// </summary>
         /// <returns>status. If Valid then dto, otherwise null</returns>
         internal protected virtual async Task<ISuccessOrErrors<TDto>> DetailDtoFromDataInAsync(
             IGenericServicesDbContext context, Expression<Func<TEntity, bool>> predicate)
         {
-            var query = GetDataUntracked(context).Where(predicate).Project().To<TDto>();
+            var query = GetDataUntracked(context).Where(predicate).ProjectTo<TDto>();
 
             //We check if we need to decompile the LINQ expression so that any computed properties in the class are filled in properly
             return await ApplyDecompileIfNeeded(query).RealiseSingleWithErrorCheckingAsync().ConfigureAwait(false);
